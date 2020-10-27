@@ -1,0 +1,23 @@
+﻿@page
+@model IEnumerable<LoginModel>
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Login Page</h1>
+</div>
+
+<body>
+    <form>
+        <label for="Username">Username: </label>
+        <input type="text" id="Username" name="Username" />
+        <br />
+
+        <label for="Password">Password: </label>
+        <input type="password" id="Password" name="Password" />
+        <br />
+
+        <button type="submit">Login</button>
+    </form>
+</body>

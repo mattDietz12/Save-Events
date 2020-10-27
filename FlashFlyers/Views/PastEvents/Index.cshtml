@@ -1,0 +1,75 @@
+﻿@model IEnumerable<EventModel>
+@{
+    ViewData["Title"] = "Past Events";
+}
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <style>
+        h1 {
+            font-size: 35px;
+            color: white;
+        }
+
+        .h1 {
+            font-size: 35px;
+            color: white;
+            position: relative;
+            right: 0;
+        }
+
+        h2 {
+            font-size: 100px;
+            color: rgb(238,174,36);
+        }
+
+        p {
+            font-size: 20px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            color: white;
+        }
+
+        body {
+            font-family: 'Roboto Slab', serif;
+            background: radial-gradient(#001f55, #013375);
+        }
+
+        .line {
+            border-bottom: 4px solid rgb(238,174,36);
+        }
+
+        .button {
+            font-size: 35px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="position: relative; right:0;">
+        Past Events
+    </h2>
+    @{
+        var last = Model.Last();
+        @foreach (var evnt in Model)
+        {
+            DateTime eventDate = DateTime.Parse(@evnt.Date);
+            DateTime currentDate = DateTime.Now;
+
+            if (eventDate < currentDate)
+            {
+                //Hard-coded base directory for now.
+                <a href="https://localhost:44395/@evnt.Id" class="h1"> @evnt.Title</a>
+                <a href="https://localhost:44395/@evnt.Id"> <embed src="@evnt.FileName" style="height: 250px; width: 500px; vertical-align: middle;"></a>
+                {
+                    <p>Date: @evnt.Date</p>
+                    <p>Time: @evnt.Time</p>
+                    <p>Building: @evnt.Building</p>
+                    <p>Room: @evnt.Room</p>
+                    <p>Campus: @evnt.Campus</p>
+                    <p class="line" style="position: relative; right: 0;">Description: @evnt.Description</p>
+                }
+            }
+        }
+    }
+</body>
+

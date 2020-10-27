@@ -1,0 +1,80 @@
+﻿@model IEnumerable<EventModel>
+@{ 
+    ViewData["Title"] = "Saved Events";
+}
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <style>
+        h1 {
+            font-size: 35px;
+            color: white;
+        }
+
+        .h1 {
+            font-size: 35px;
+            color: white;
+            position: relative;
+            right: 0;
+        }
+
+        h2 {
+            font-size: 100px;
+            color: rgb(238,174,36);
+        }
+
+        p {
+            font-size: 20px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            color: white;
+        }
+
+        body {
+            font-family: 'Roboto Slab', serif;
+            background: radial-gradient(#001f55, #013375);
+        }
+
+        .line {
+            border-bottom: 4px solid rgb(238,174,36);
+        }
+
+        .button {
+            font-size: 35px;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 style="position: relative; right:0;">
+        Saved Events
+    </h2>
+
+
+    @{ var Last = Model.Last();
+        @foreach (var evnt in Model)
+        {
+            DateTime eventDate = DateTime.Parse(@evnt.Date);
+            DateTime currentDate = DateTime.Now;
+
+            @if (@evnt.Saved == true) // no longer need this check just show everything in saved table for now (than when setting up for account filter by account id)
+            {
+                <!-- Display the event title, description, time, date, building, and room-->
+                <a href="https://localhost:44395/@evnt.Id" class="h1"> @evnt.Title</a>
+                {
+                    <p class="line" style="position: relative; right: 0;">
+                        @evnt.Description
+                        <br />
+                        @evnt.Date
+                        @evnt.Time
+                        <br />
+                        @evnt.Building
+                        @evnt.Room
+                        @evnt.Campus
+                    </p>
+                }
+            }
+        }
+    }
+</body>

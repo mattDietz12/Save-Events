@@ -1,0 +1,71 @@
+﻿@model EventModel
+@{
+    ViewData["Title"] = "Individual Event Page";
+}
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <style>
+        h1 {
+            font-size: 35px;
+            color: white;
+        }
+        .h1 {
+            font-size: 35px;
+            color: white;
+            position: relative;
+            right: 0;
+        }
+        h2 {
+            font-size: 100px;
+            color: rgb(238,174,36); 
+        }
+
+        p {
+            font-size: 20px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            color: white;
+        }
+
+        body {
+            font-family: 'Roboto Slab', serif;
+            background: radial-gradient(#001f55, #013375);
+        }
+
+        .line {
+            border-bottom: 4px solid rgb(238,174,36);
+        }
+        .button {
+            font-size: 35px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="position: relative; right:0;">
+        Event
+    </h2>
+    @{
+        <h1>@Model.Title</h1>
+        <embed src="@Model.FileName" style="height: 250px; width: 500px; vertical-align: middle;">
+        {
+            <p>
+                Date: @Model.Date
+                Time: @Model.Time
+            </p>
+            <p>
+                Building: @Model.Building
+                Room: @Model.Room
+                Campus: @Model.Campus
+            </p>
+            <p class="line" style="position: relative; right: 0;">
+                Description: @Model.Description
+                <br />
+                <form method="post"  asp-controller="SaveEvents" asp-action="SavedEvent">
+                <button id="save" name="save" asp-controller="SaveEvents" asp-action="SavedEvent">Save This Event</button>
+                </form> 
+            </p>
+        }
+    }
+    <a href="https://localhost:44395" class="h1">Main Events</a>
+</body>
